@@ -19,9 +19,12 @@
 課題１で記載したUbuntuとは異なるverのubuntu-ja-22.04 LTSを以後使用  
 参考にしたwebサイト(https://webdesign-programming.com/virtualbox-ubuntu-install/)
 
+☆次回やってみたいこと  
+・今回は初学者向けにUbuntuを使用したが、CentOSにしたらどう変わるのかが気になる  
+・今回使用したVirtualBox以外の選択肢としてWSL(Windows Subsystem for Linux)も使ってみたい
 ##  ３．OSインストール後
 - サーバのタイムゾーンをJSTにする  
-すでにJSTでしたが確認の為以下のコードを入力  
+すでにJSTだったが確認の為以下のコードを入力  
 - timedatectl
 - timedatectl set-timezone Asia/Tokyo
 - timedatectl status  
@@ -29,3 +32,8 @@
 
 参考にしたwebサイト(https://notes.nakurei.com/post/set-ubuntu-server-timezone-to-jst/)  
 man = manual  
+
+-NTPサーバとの時刻同期
+- ntp1.jst.mfeed.ad.jp
+- ntp2.jst.mfeed.ad.jp
+- ntp3.jst.mfeed.ad.jp
