@@ -3,7 +3,10 @@
 ## １．使用するOSやサーバ環境について
 - OS：　Ubuntu　24.04.3 LTS
 - 構築方法：　VirtualBox
-- 参考資料：　公式ドキュメント、AI（CHATGPT、Jemini）
+- 参考資料：  
+・Ubuntu公式ドキュメント（一次情報）  
+・AI（CHATGPT、Jemini）： コマンドの意味や初学者向けの視点の解説に使用  
+・Qiita： 環境構築の全体像を把握するための参考
 - Ubuntu選定理由  
 　自分が普段使用しているOS（Windows）以外に手を出すのは初めてだった為、初学者でも分かりやすいかつ、情報源の多い印象を受けたUbuntuを選択。  
 　参考にしたwebサイト (https://qiita.com/free-honda/items/c8776286886b3ea31825)
@@ -22,5 +25,7 @@
 - timedatectl
 - timedatectl set-timezone Asia/Tokyo
 - timedatectl status  
-<img src="image/image.png" width="400">  
-参考にしたwebサイト(https://notes.nakurei.com/post/set-ubuntu-server-timezone-to-jst/)
+<img width="628" height="437" alt="image" src="https://github.com/user-attachments/assets/ce190bda-4261-4329-b983-285b5de546aa" />  
+
+参考にしたwebサイト(https://notes.nakurei.com/post/set-ubuntu-server-timezone-to-jst/)  
+man = manual  
