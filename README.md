@@ -1,7 +1,7 @@
 # LAMP環境構築課題
 
 ## １．使用するOSやサーバ環境について
-- OS：　Ubuntu　24.04.3 LTS
+- OS：　Ubuntu　24.04.3 LTS ←　※課題２でバージョンが変わります
 - 構築方法：　VirtualBox
 - 参考資料：  
 ・Ubuntu公式ドキュメント（一次情報）  
