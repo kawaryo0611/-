@@ -1,1 +1,30 @@
+- サーバのタイムゾーンをJSTにする  
+すでにJSTだったが確認の為以下のコードを入力  
+-timedatectl  
+-timedatectl set-timezone Asia/Tokyo  
+-timedatectl status    
+<img width="628" height="437" alt="image" src="https://github.com/user-attachments/assets/ce190bda-4261-4329-b983-285b5de546aa" />  
+
+参考にしたwebサイト(https://notes.nakurei.com/post/set-ubuntu-server-timezone-to-jst/)  
+man = manual  
+
+- NTPサーバとの時刻同期  
+-ntp1.jst.mfeed.ad.jp  
+-ntp2.jst.mfeed.ad.jp  
+-ntp3.jst.mfeed.ad.jp
+
+<img width="624" height="320" alt="image" src="https://github.com/user-attachments/assets/73ca9c78-5164-46f5-9007-4e133b50c126" />  
+
+それっぽいマニュアルがないか試しに入力したが見つからなかった為ドキュメント探し。
+
+chronyをインストールするコマンドを実行  
+sudo apt install chrony  
+
+NTPサーバとの時刻合わせのコマンドを実行  
+ntpdate -q ntp1.jst.mfeed.ad.jp  
+ntpdate -q ntp2.jst.mfeed.ad.jp  
+ntpdate ntp3.jst.mfeed.ad.jp  
+
+ntp1,ntp2は確認だけ行う為にオプションのqを付けたがntp3は除いている  
+参考にしたwebサイト(https://zenn.dev/shiragi/articles/92079c2b4613de)
 
