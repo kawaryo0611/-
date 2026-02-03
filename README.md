@@ -60,3 +60,19 @@
 </div>
 
 ---  
+
+## ５．PHP  
+‐ PHPを利用したwebページが表示される環境を作る  
+‐ PHPのバージョンは７系を利用  
+‐ webブラウザで'http://<自分の名字>-hbtask.local/phpinfo.pho'にアクセスすると、PHPinfoの情報が表示される  
+
+---
+
+<div align="center">
+
+📄 詳しい手順はこちら  
+[➡ 課題５ 詳細を見る](課題５.md)
+
+</div>
+
+---  
