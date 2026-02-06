@@ -64,7 +64,7 @@
 ## ５．PHP  
 ‐ PHPを利用したwebページが表示される環境を作る  
 ‐ PHPのバージョンは７系を利用  
-‐ webブラウザで'http://<自分の名字>-hbtask.local/phpinfo.pho'にアクセスすると、PHPinfoの情報が表示される  
+‐ webブラウザで'http://<自分の名字>-hbtask.local/phpinfo.php'にアクセスすると、PHPinfoの情報が表示される  
 
 ---
 
@@ -72,6 +72,22 @@
 
 📄 詳しい手順はこちら  
 [➡ 課題５ 詳細を見る](課題５.md)
+
+</div>
+
+---  
+
+## ６．MySQL  
+- データベースを利用したPHPのWebページが表示される環境を作る
+- MySQLのバージョンは８系を利用
+- webブラウザで'http://<自分の名前>-hbtask.local/mysql.php'にアクセスすると、自分のフルネームが表示される
+
+---
+
+<div align="center">
+
+📄 詳しい手順はこちら  
+[➡ 課題６ 詳細を見る](課題６.md)
 
 </div>
 
