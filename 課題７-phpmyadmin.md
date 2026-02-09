@@ -1,4 +1,4 @@
-phpmyadminをインストール  
+### phpmyadminをインストール  
 sudo apt update  
 sudo apt install phpmyadmin  
 
@@ -16,6 +16,7 @@ apache2 or Lighttpd
 
 しかし、このままだとphpmyadminにアクセスすることが出来なかった  
 
+
 ### 色々試行錯誤することに  
 http://kawaguchi-hbtask.local/phpmyadmin  
 をブラウザで開いても、エラーが出てしまう  
@@ -29,6 +30,7 @@ sudo a2enconf phpmyadmin ← phpmyadminの設定ファイルを apacheの設定�
 
 しかしここではターミナル画面でエラーが起きる  
 ERROR: conf phpmyadmin does not exist!  ← apache用の設定ファイルが、apacheが認識できる場所に置かれていない
+
 
 apacheの設定ファイルにphpmyadminを設定する  
 sudo vi /etc/apache2/apache2.conf  
@@ -45,6 +47,7 @@ sudo systemctl restart apache2
 
 そこで、一度phpmyadomin を完全に消去して最初からやり直すことにする  
 それでも同じように500エラーで開くことが出来なかった  
+
 
 ### 次に実施したこと  
 今あるphpmyadminを無効化する  
@@ -72,7 +75,8 @@ apacheユーザーに所有権とグループを設定し、適切に権限を�
 sudo chown -R www-data:www-data /var/www/html/phpmyadmin  
 sudo chmod -R 755 /var/www/html/phpmyadmin  
 
-ここまでやってやっと、localhost上でphpmyadminのページを表示することが出来た  
+
+#### ここまでやってやっと、localhost上でphpmyadminのページを表示することが出来た  
 <img width="1089" height="627" alt="image" src="https://github.com/user-attachments/assets/e70f4348-547d-49ec-a60e-9a5ac3f4c1e9" />  
 <img width="900" height="601" alt="image" src="https://github.com/user-attachments/assets/c395758c-4e28-4d5e-857d-23aa1b49342a" />  
 
@@ -86,7 +90,9 @@ apache2の課題(課題４)の時に使用した設定ファイル(hb.conf)を�
 中身をこのように記載↓　/etc/apache2/sites-available/admin.conf  
 <img width="549" height="228" alt="image" src="https://github.com/user-attachments/assets/d05e2125-9a48-4f91-af0a-8819c000b362" />  
 
+
 すると、無事にphpmyadminを今までの型(kawaguchi-hbtask.local)のURLで開くことが出来た  
+
 <img width="960" height="636" alt="image" src="https://github.com/user-attachments/assets/bf7034e3-81e3-48d3-97c8-8dcb535fc2a9" />  
 
 課題４の内容を開く時は、hb.confを有効にして切り替える必要がある  
