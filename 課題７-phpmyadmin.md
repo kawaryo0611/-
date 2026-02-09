@@ -1,1 +1,104 @@
+phpmyadminをインストール  
+sudo apt update  
+sudo apt install phpmyadmin  
+
+インストールが完了すると、以下２つを選ぶことに  
+1.Webサーバーの選択  
+apache2 or Lighttpd  
+→apache2を選択  
+
+2.phpmyadmin用のデータベースは自動作成で良いか  
+データベースをGUIで見られて初学者に優しいという点から、yesを選択  
+
+その後、パスワード(任意)を設定してインストール完了  
+
+参考にしたwebサイト(https://usagipy.com/ubuntu-phpmyadmin-install/#st-toc-h-1)  
+
+しかし、このままだとphpmyadminにアクセスすることが出来なかった  
+
+### 色々試行錯誤することに  
+http://kawaguchi-hbtask.local/phpmyadmin  
+をブラウザで開いても、エラーが出てしまう  
+エラーの内容　404 Not Found  
+
+これは、apacheがphpmyadminというURLに対して参照するフォルダを理解できていない状態  
+
+次に試したこと  
+設定ファイルを直接読み込ませる  
+sudo a2enconf phpmyadmin ← phpmyadminの設定ファイルを apacheの設定として有効化する  
+
+しかしここではターミナル画面でエラーが起きる  
+ERROR: conf phpmyadmin does not exist!  ← apache用の設定ファイルが、apacheが認識できる場所に置かれていない
+
+apacheの設定ファイルにphpmyadminを設定する  
+sudo vi /etc/apache2/apache2.conf  
+include /etc/phpmyadmin/apache.conf  
+sudo systemctl restart apache2  
+
+少し進展があり、エラーコードが変わる  
+<img width="1076" height="649" alt="image" src="https://github.com/user-attachments/assets/9d9d51bf-3692-4c1c-b7da-526990b54b55" />  
+
+設定ファイルに記述したinclude ~~の内容を削除し、同じエラーが起きている人のページを参考に再設定を行う  
+参考にしたWebサイト(https://virment.com/phpmyadmin-problem/)  
+
+しかしそれでも上手くいかずドン詰まり  
+
+そこで、一度phpmyadomin を完全に消去して最初からやり直すことにする  
+それでも同じように500エラーで開くことが出来なかった  
+
+### 次に実施したこと  
+今あるphpmyadminを無効化する  
+sudo a2disconf phpmyadmin  
+
+phpmyadminを公式サイトから直接ダウンロードする  
+cd /var/www/html  
+
+sudo wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip  
+
+zipファイルを解凍する  
+sudo apt install unzip -y  
+sudo unzip phpMyAdmin-5.2.1-all-languages.zip  
+
+名前をphpmyadminに変えて設置  
+sudo rm -rf phpmyadmin ←古いフォルダ、phpmyadminがある可能性があったので削除  
+- rm 削除
+- -r ディレクトリの中身も含めて削除
+- -f 中身を確認せず強制削除  
+
+sudo mv phpMyAdmin-5.2.1-all-languages phpmyadmin  
+phpMyAdminをphpmyadminに移動(mv)  
+
+apacheユーザーに所有権とグループを設定し、適切に権限を付与する  
+sudo chown -R www-data:www-data /var/www/html/phpmyadmin  
+sudo chmod -R 755 /var/www/html/phpmyadmin  
+
+ここまでやってやっと、localhost上でphpmyadminのページを表示することが出来た  
+<img width="1089" height="627" alt="image" src="https://github.com/user-attachments/assets/e70f4348-547d-49ec-a60e-9a5ac3f4c1e9" />  
+<img width="900" height="601" alt="image" src="https://github.com/user-attachments/assets/c395758c-4e28-4d5e-857d-23aa1b49342a" />  
+
+参考にしたWebサイト(https://iifx.dev/ja/articles/51364717/%E3%81%93%E3%82%8C%E3%81%A7%E8%A7%A3%E6%B1%BA-apache-403-forbidden-%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%81%A8%E5%AF%BE%E7%AD%96)  
+
+次に、localhost というURLではなく今までと同じ型のURLで入れるように設定をしていく  
+
+- ドキュメントルートの設定
+apache2の課題(課題４)の時に使用した設定ファイル(hb.conf)を編集すると、せっかく課題４で作成したURLが正しくアクセスできなくなる為、別の設定ファイルを作成(admin.conf)
+それぞれの課題の内容は残したまま、好きな時に切り替えを出来るように設定を進めていく  
+中身をこのように記載↓　/etc/apache2/sites-available/admin.conf  
+<img width="549" height="228" alt="image" src="https://github.com/user-attachments/assets/d05e2125-9a48-4f91-af0a-8819c000b362" />  
+
+すると、無事にphpmyadminを今までの型(kawaguchi-hbtask.local)のURLで開くことが出来た  
+<img width="960" height="636" alt="image" src="https://github.com/user-attachments/assets/bf7034e3-81e3-48d3-97c8-8dcb535fc2a9" />  
+
+課題４の内容を開く時は、hb.confを有効にして切り替える必要がある  
+有効にする際のコマンド  
+sudo a2ensite 「有効にしたい設定ファイル.conf」  
+
+今まで使っていた方の設定ファイルをOFFにする  
+sudo a2dissite 「無効にする設定ファイル.conf」  
+
+再読み込み、または再起動  
+sudo systemctl reload(restart) apache2  
+
+phpmyadmin、無事にユーザー名とパスワードでログインすることが出来た  
+今回のものだとhbtask_user  ,  password  
 
